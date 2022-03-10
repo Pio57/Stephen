@@ -12,19 +12,14 @@ from botbuilder.core import (
     TurnContext,
 )
 from botbuilder.dialogs import Dialog
-from botbuilder.schema import Attachment, ChannelAccount
+from botbuilder.schema import Attachment, ChannelAccount, SuggestedActions, CardAction, ActionTypes
 from helpers.dialog_helper import DialogHelper
 
 from .dialog_bot import DialogBot
 
 
 class DialogAndWelcomeBot(DialogBot):
-    def __init__(
-        self,
-        conversation_state: ConversationState,
-        user_state: UserState,
-        dialog: Dialog,
-    ):
+    def __init__(self,conversation_state: ConversationState,user_state: UserState,dialog: Dialog,):
         super(DialogAndWelcomeBot, self).__init__(
             conversation_state, user_state, dialog
         )
@@ -55,3 +50,4 @@ class DialogAndWelcomeBot(DialogBot):
         return Attachment(
             content_type="application/vnd.microsoft.card.adaptive", content=card
         )
+

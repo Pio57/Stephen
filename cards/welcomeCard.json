@@ -5,7 +5,7 @@
   "body": [
     {
       "type": "Image",
-      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtB3AwMUeNoq4gUBGe6Ocj8kyh3bXa9ZbV7u1fVKQoyKFHdkqU",
+      "url": "https://miro.medium.com/max/1400/1*BvxTUk-hIaDhG4RwQav3Xg.jpeg",
       "size": "stretch"
     },
     {
@@ -13,7 +13,7 @@
       "spacing": "medium",
       "size": "default",
       "weight": "bolder",
-      "text": "Welcome to Bot Framework!",
+      "text": "Ciao mi chiamo Ola!",
       "wrap": true,
       "maxLines": 0
     },
@@ -21,7 +21,7 @@
       "type": "TextBlock",
       "size": "default",
       "isSubtle": "true",
-      "text": "Now that you have successfully run your bot, follow the links in this Adaptive Card to expand your knowledge of Bot Framework.",
+      "text": "Sono un bot che ti aiuterà nello sviluppo e utlizzo di chatbot per lo sviluppo software, precisamente ti consiglierò delle best-practices in base alle challenges che dovrai affrontare.",
       "wrap": true,
       "maxLines": 0
     }
@@ -29,17 +29,17 @@
   "actions": [
     {
       "type": "Action.OpenUrl",
-      "title": "Get an overview",
+      "title": "Link",
       "url": "https://docs.microsoft.com/azure/bot-service/?view=azure-bot-service-4.0"
     },
     {
       "type": "Action.OpenUrl",
-      "title": "Ask a question",
+      "title": "Link",
       "url": "https://stackoverflow.com/questions/tagged/botframework"
     },
     {
       "type": "Action.OpenUrl",
-      "title": "Learn how to deploy",
+      "title": "Link",
       "url": "https://docs.microsoft.com/azure/bot-service/bot-builder-howto-deploy-azure?view=azure-bot-service-4.0"
     }
   ]

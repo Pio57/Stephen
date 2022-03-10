@@ -8,70 +8,65 @@ from botbuilder.dialogs import (
     DialogTurnResult,
 )
 from botbuilder.dialogs.prompts import TextPrompt, PromptOptions
-from botbuilder.core import MessageFactory, TurnContext
-from botbuilder.schema import InputHints
+from botbuilder.core import MessageFactory, TurnContext, turn_context
+from botbuilder.schema import InputHints, SuggestedActions, CardAction, ActionTypes
 
 from booking_details import BookingDetails
+from chellenge_recognizer import ChallengeRecognizer
 from flight_booking_recognizer import FlightBookingRecognizer
 from helpers.luis_helper import LuisHelper, Intent
 from .booking_dialog import BookingDialog
-
+from .BestPractices import BestPractices
 
 class MainDialog(ComponentDialog):
-    def __init__(
-        self, luis_recognizer: FlightBookingRecognizer, booking_dialog: BookingDialog
-    ):
+    def __init__(self, recognizer: ChallengeRecognizer):
         super(MainDialog, self).__init__(MainDialog.__name__)
 
-        self._luis_recognizer = luis_recognizer
-        self._booking_dialog_id = booking_dialog.id
+        self.recognizer = recognizer
 
         self.add_dialog(TextPrompt(TextPrompt.__name__))
-        self.add_dialog(booking_dialog)
+        self.add_dialog(BestPractices(BestPractices.__name__))
         self.add_dialog(
             WaterfallDialog(
-                "WFDialog", [self.intro_step, self.act_step, self.final_step]
+                "WFDialog", [self.options_step, self.choise_step, self.final_step]
             )
         )
 
         self.initial_dialog_id = "WFDialog"
 
-    async def intro_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
-        if not self._luis_recognizer.is_configured:
-            await step_context.context.send_activity(
-                MessageFactory.text(
-                    "NOTE: LUIS is not configured. To enable all capabilities, add 'LuisAppId', 'LuisAPIKey' and "
-                    "'LuisAPIHostName' to the appsettings.json file.",
-                    input_hint=InputHints.ignoring_input,
-                )
-            )
+    async def options_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
+        reply = MessageFactory.text("Here's what I can do\nChoose an option")
 
-            return await step_context.next(None)
-        message_text = (
-            str(step_context.options)
-            if step_context.options
-            else "What can I help you with today?"
-        )
-        prompt_message = MessageFactory.text(
-            message_text, message_text, InputHints.expecting_input
+        reply.suggested_actions = SuggestedActions(
+            actions=[
+                CardAction(
+                    title="Acknowledges challenge",
+                    type=ActionTypes.im_back,
+                    value="Acknowledges challenge",
+                ),
+                CardAction(
+                    title="Insert new challenge",
+                    type=ActionTypes.im_back,
+                    value="Insert new challenge",
+                ),
+                CardAction(
+                    title="Remove challenge",
+                    type=ActionTypes.im_back,
+                    value="Remove challenge",
+                ),
+            ]
         )
 
         return await step_context.prompt(
-            TextPrompt.__name__, PromptOptions(prompt=prompt_message)
+            TextPrompt.__name__, PromptOptions(prompt=reply)
         )
 
-    async def act_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
-        if not self._luis_recognizer.is_configured:
-            # LUIS is not configured, we just run the BookingDialog path with an empty BookingDetailsInstance.
-            return await step_context.begin_dialog(
-                self._booking_dialog_id, BookingDetails()
-            )
+    async def choise_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
+        print(step_context.result)
 
-        # Call LUIS and gather any potential booking details. (Note the TurnContext has the response to the prompt.)
-        intent, luis_result = await LuisHelper.execute_luis_query(
-            self._luis_recognizer, step_context.context
-        )
-
+        if(step_context.result == "Acknowledges challenge"):
+            return await step_context.begin_dialog(BestPractices.__name__)
+        """
         if intent == Intent.BOOK_FLIGHT.value and luis_result:
             # Show a warning for Origin and Destination if we can't resolve them.
             await MainDialog._show_warning_for_unsupported_cities(
@@ -98,7 +93,7 @@ class MainDialog(ComponentDialog):
             await step_context.context.send_activity(didnt_understand_message)
 
         return await step_context.next(None)
-
+        """
     async def final_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
         # If the child dialog ("BookingDialog") was cancelled or the user failed to confirm,
         # the Result here will be null.

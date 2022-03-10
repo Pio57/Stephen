@@ -21,6 +21,7 @@ from botbuilder.core import (
 from botbuilder.core.integration import aiohttp_error_middleware
 from botbuilder.schema import Activity
 
+from chellenge_recognizer import ChallengeRecognizer
 from config import DefaultConfig
 from dialogs import MainDialog, BookingDialog
 from bots import DialogAndWelcomeBot
@@ -44,9 +45,9 @@ CONVERSATION_STATE = ConversationState(MEMORY)
 ADAPTER = AdapterWithErrorHandler(SETTINGS, CONVERSATION_STATE)
 
 # Create dialogs and Bot
-RECOGNIZER = FlightBookingRecognizer(CONFIG)
+RECOGNIZER = ChallengeRecognizer()
 BOOKING_DIALOG = BookingDialog()
-DIALOG = MainDialog(RECOGNIZER, BOOKING_DIALOG)
+DIALOG = MainDialog(RECOGNIZER)
 BOT = DialogAndWelcomeBot(CONVERSATION_STATE, USER_STATE, DIALOG)
 
 

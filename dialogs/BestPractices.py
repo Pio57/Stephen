@@ -25,6 +25,7 @@ class BestPractices(ComponentDialog):
                     self.first_step,
                     self.second_step,
                     self.third_step,
+                    self.fourth_step,
                 ],
             )
         )
@@ -55,9 +56,9 @@ class BestPractices(ComponentDialog):
 
     async def second_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
             reply = MessageFactory.text("select the challenge")
-            if(step_context.result == "Development challenges"):
-
-
+            intent = await self.recognizer.recognize(step_context)
+            print(intent)
+            if(intent == "DevelopmentChallenges"):
                 reply.suggested_actions = SuggestedActions(
                     actions=[
                         CardAction(
@@ -74,15 +75,38 @@ class BestPractices(ComponentDialog):
                 )
 
 
-            if (step_context.result == "Use challenges"):
+            if (intent == "UseChallenges"):
                 print("Hai scelto Use challenges")
             return await step_context.prompt(
                 TextPrompt.__name__, PromptOptions(prompt=reply)
             )
+
     async def third_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
             print(step_context.result)
             res = await self.recognizer.recognize(step_context)
             reply = MessageFactory.text("select the challenge"+res)
+
+            reply.suggested_actions = SuggestedActions(
+                actions=[
+                    CardAction(
+                        title="ok, grazie per la risposta",
+                        type=ActionTypes.im_back,
+                        value="ok, grazie per la risposta",
+                    ),
+                    CardAction(
+                        title="Ho bisogno di altre best-practices per una nuova challenge",
+                        type=ActionTypes.im_back,
+                        value="Ho bisogno di altre best-practices per una nuova challenge",
+                    ),
+                ]
+            )
             return await step_context.prompt(
                 TextPrompt.__name__, PromptOptions(prompt=reply)
             )
+
+    async def fourth_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
+        if(step_context.result == "ok, grazie per la risposta"):
+            print("sono qui")
+            return await step_context.end_dialog(BestPractices.__name__)
+        if(step_context.result == "Ho bisogno di altre best-practices per una nuova challenge"):
+            return await step_context.begin_dialog(BestPractices.__name__)

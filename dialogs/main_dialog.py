@@ -63,8 +63,9 @@ class MainDialog(ComponentDialog):
 
     async def choise_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
         print(step_context.result)
-
-        if(step_context.result == "Acknowledges challenge"):
+        intent = await self.recognizer.recognize(step_context)
+        print("click:"+intent)
+        if(intent == "AcknowledgesChallenge"):
             return await step_context.begin_dialog(BestPractices.__name__)
         """
         if intent == Intent.BOOK_FLIGHT.value and luis_result:
@@ -95,6 +96,8 @@ class MainDialog(ComponentDialog):
         return await step_context.next(None)
         """
     async def final_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
+        print("final step")
+        """    
         # If the child dialog ("BookingDialog") was cancelled or the user failed to confirm,
         # the Result here will be null.
         if step_context.result is not None:
@@ -111,7 +114,7 @@ class MainDialog(ComponentDialog):
 
         prompt_message = "What else can I do for you?"
         return await step_context.replace_dialog(self.id, prompt_message)
-
+"""
     @staticmethod
     async def _show_warning_for_unsupported_cities(
         context: TurnContext, luis_result: BookingDetails

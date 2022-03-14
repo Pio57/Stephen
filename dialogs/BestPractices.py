@@ -1,3 +1,4 @@
+
 from chellenge_recognizer import ChallengeRecognizer
 
 from datatypes_date_time.timex import Timex
@@ -58,6 +59,7 @@ class BestPractices(ComponentDialog):
             reply = MessageFactory.text("select the challenge")
             intent = await self.recognizer.recognize(step_context)
             print(intent)
+
             if(intent == "DevelopmentChallenges"):
                 reply.suggested_actions = SuggestedActions(
                     actions=[
@@ -67,16 +69,122 @@ class BestPractices(ComponentDialog):
                             value="High Dependence on Data/high data quality",
                         ),
                         CardAction(
-                            title="Use challenges",
+                            title="NLP(Natural Language Processing)",
                             type=ActionTypes.im_back,
-                            value="Use challenges",
+                            value="NLP(Natural Language Processing)",
+                        ),
+                        CardAction(
+                            title="Test of Bot/ChatBot",
+                            type=ActionTypes.im_back,
+                            value="Test of Bot/ChatBot",
+                        ),
+                        CardAction(
+                            title="Maintenance",
+                            type=ActionTypes.im_back,
+                            value="Maintenance",
+                        ),
+                        CardAction(
+                            title="Development cost",
+                            type=ActionTypes.im_back,
+                            value="Development cost",
+                        ),
+                        CardAction(
+                            title="Secure data",
+                            type=ActionTypes.im_back,
+                            value="Secure data",
+                        ),
+                        CardAction(
+                            title="Machine learning",
+                            type=ActionTypes.im_back,
+                            value="Machine learning",
+                        ),
+                        CardAction(
+                            title="Respond slowly",
+                            type=ActionTypes.im_back,
+                            value="Respond slowly",
+                        ),
+                        CardAction(
+                            title="Integration",
+                            type=ActionTypes.im_back,
+                            value="Integration",
                         ),
                     ]
                 )
-
-
-            if (intent == "UseChallenges"):
-                print("Hai scelto Use challenges")
+            elif (intent == "UseChallenges"):
+                reply.suggested_actions = SuggestedActions(
+                    actions=[
+                        CardAction(
+                            title="Privacy concerns",
+                            type=ActionTypes.im_back,
+                            value="Privacy concerns",
+                        ),
+                        CardAction(
+                            title="Accessibility",
+                            type=ActionTypes.im_back,
+                            value="Accessibility",
+                        ),
+                        CardAction(
+                            title="Noise",
+                            type=ActionTypes.im_back,
+                            value="Noise",
+                        ),
+                        CardAction(
+                            title="Ethics",
+                            type=ActionTypes.im_back,
+                            value="Ethics",
+                        ),
+                        CardAction(
+                            title="Trust/reliability",
+                            type=ActionTypes.im_back,
+                            value="Trust/reliability",
+                        ),
+                        CardAction(
+                            title="Interruption",
+                            type=ActionTypes.im_back,
+                            value="Interruption",
+                        ),
+                        CardAction(
+                            title="Choosing a bot / Configuring a bot",
+                            type=ActionTypes.im_back,
+                            value="Choosing a bot / Configuring a bot",
+                        ),
+                        CardAction(
+                            title="Lack of understanding of intent",
+                            type=ActionTypes.im_back,
+                            value="Lack of understanding of intent",
+                        ),
+                        CardAction(
+                            title="Too long answers",
+                            type=ActionTypes.im_back,
+                            value="Too long answers",
+                        ),
+                        CardAction(
+                            title="Solve everything",
+                            type=ActionTypes.im_back,
+                            value="Solve everything",
+                        ),
+                        CardAction(
+                            title="Lack of information about the bot",
+                            type=ActionTypes.im_back,
+                            value="Lack of information about the bot",
+                        ),
+                        CardAction(
+                            title="Wrong actions/wrong information",
+                            type=ActionTypes.im_back,
+                            value="Wrong actions/wrong information",
+                        ),
+                        CardAction(
+                            title="Usability",
+                            type=ActionTypes.im_back,
+                            value="Usability",
+                        ),
+                  ]
+                )
+            else:
+                print("sono nell'else")
+                return await step_context.prompt(
+                     BestPractices.__name__,PromptOptions(prompt="", retry_prompt=""),
+                )
             return await step_context.prompt(
                 TextPrompt.__name__, PromptOptions(prompt=reply)
             )
@@ -84,6 +192,10 @@ class BestPractices(ComponentDialog):
     async def third_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
             print(step_context.result)
             res = await self.recognizer.recognize(step_context)
+            if(res == None):
+                return await step_context.reprompt_dialog(
+                    BestPractices.__name__, PromptOptions(prompt="", retry_prompt=""),
+                )
             reply = MessageFactory.text("select the challenge"+res)
 
             reply.suggested_actions = SuggestedActions(
@@ -107,6 +219,6 @@ class BestPractices(ComponentDialog):
     async def fourth_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
         if(step_context.result == "ok, grazie per la risposta"):
             print("sono qui")
-            return await step_context.end_dialog(BestPractices.__name__)
+            return await step_context.end_dialog()
         if(step_context.result == "Ho bisogno di altre best-practices per una nuova challenge"):
             return await step_context.begin_dialog(BestPractices.__name__)

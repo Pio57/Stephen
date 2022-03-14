@@ -64,9 +64,12 @@ class MainDialog(ComponentDialog):
     async def choise_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
         print(step_context.result)
         intent = await self.recognizer.recognize(step_context)
-        print("click:"+intent)
         if(intent == "AcknowledgesChallenge"):
             return await step_context.begin_dialog(BestPractices.__name__)
+        else:
+            return await step_context.prompt(
+                MainDialog.__name__, PromptOptions(prompt="", retry_prompt=""),
+            )
         """
         if intent == Intent.BOOK_FLIGHT.value and luis_result:
             # Show a warning for Origin and Destination if we can't resolve them.

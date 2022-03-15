@@ -23,7 +23,7 @@ from botbuilder.schema import Activity
 
 from chellenge_recognizer import ChallengeRecognizer
 from config import DefaultConfig
-from dialogs import MainDialog, BookingDialog
+from dialogs import MainDialog
 from bots import DialogAndWelcomeBot
 
 from adapter_with_error_handler import AdapterWithErrorHandler
@@ -46,7 +46,6 @@ ADAPTER = AdapterWithErrorHandler(SETTINGS, CONVERSATION_STATE)
 
 # Create dialogs and Bot
 RECOGNIZER = ChallengeRecognizer()
-BOOKING_DIALOG = BookingDialog()
 DIALOG = MainDialog(RECOGNIZER)
 BOT = DialogAndWelcomeBot(CONVERSATION_STATE, USER_STATE, DIALOG)
 

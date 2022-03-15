@@ -5,7 +5,7 @@
   "body": [
     {
       "type": "Image",
-      "url": "https://miro.medium.com/max/1400/1*BvxTUk-hIaDhG4RwQav3Xg.jpeg",
+      "url": "https://cdn.dribbble.com/users/2206859/screenshots/5795316/main_robot_dribble_icon_1.gif",
       "size": "stretch"
     },
     {
@@ -24,23 +24,6 @@
       "text": "Sono un bot che ti aiuterà nello sviluppo e utlizzo di chatbot per lo sviluppo software, precisamente ti consiglierò delle best-practices in base alle challenges che dovrai affrontare.",
       "wrap": true,
       "maxLines": 0
-    }
-  ],
-  "actions": [
-    {
-      "type": "Action.OpenUrl",
-      "title": "Link",
-      "url": "https://docs.microsoft.com/azure/bot-service/?view=azure-bot-service-4.0"
-    },
-    {
-      "type": "Action.OpenUrl",
-      "title": "Link",
-      "url": "https://stackoverflow.com/questions/tagged/botframework"
-    },
-    {
-      "type": "Action.OpenUrl",
-      "title": "Link",
-      "url": "https://docs.microsoft.com/azure/bot-service/bot-builder-howto-deploy-azure?view=azure-bot-service-4.0"
     }
   ]
 }

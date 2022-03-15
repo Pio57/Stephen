@@ -11,22 +11,22 @@ from botbuilder.schema import ActivityTypes, InputHints
 from botbuilder.core import MessageFactory
 
 
-class CancelAndHelpDialog(ComponentDialog):
+class InterruptDialog(ComponentDialog):
     def __init__(self, dialog_id: str):
-        super(CancelAndHelpDialog, self).__init__(dialog_id)
+        super(InterruptDialog, self).__init__(dialog_id)
 
     async def on_continue_dialog(self, inner_dc: DialogContext) -> DialogTurnResult:
         result = await self.interrupt(inner_dc)
         if result is not None:
             return result
 
-        return await super(CancelAndHelpDialog, self).on_continue_dialog(inner_dc)
+        return await super(InterruptDialog, self).on_continue_dialog(inner_dc)
 
     async def interrupt(self, inner_dc: DialogContext) -> DialogTurnResult:
         if inner_dc.context.activity.type == ActivityTypes.message:
             text = inner_dc.context.activity.text.lower()
 
-            help_message_text = "Show Help..."
+            help_message_text = "Digita 'annulla' per interrompere l'interazione"
             help_message = MessageFactory.text(
                 help_message_text, help_message_text, InputHints.expecting_input
             )
@@ -35,7 +35,7 @@ class CancelAndHelpDialog(ComponentDialog):
                 await inner_dc.context.send_activity(help_message)
                 return DialogTurnResult(DialogTurnStatus.Waiting)
 
-            cancel_message_text = "Cancelling"
+            cancel_message_text = "Annullo..."
             cancel_message = MessageFactory.text(
                 cancel_message_text, cancel_message_text, InputHints.ignoring_input
             )

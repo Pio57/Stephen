@@ -32,7 +32,6 @@ class ChallengeRecognizer(Recognizer):
                   }
 
     async def recognize(self, step_context: WaterfallStepContext):
-        print("ciap")
         if(self.challenges.keys().__contains__(step_context.result)):
             return self.challenges[step_context.result]
         return None

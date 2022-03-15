@@ -7,18 +7,17 @@ from botbuilder.dialogs import WaterfallDialog, WaterfallStepContext, DialogTurn
 from botbuilder.dialogs.prompts import ConfirmPrompt, TextPrompt, PromptOptions
 from botbuilder.core import MessageFactory
 from botbuilder.schema import InputHints, SuggestedActions, CardAction, ActionTypes
-from .cancel_and_help_dialog import CancelAndHelpDialog
-from .date_resolver_dialog import DateResolverDialog
 
-class BestPractices(ComponentDialog):
+from .InterruptDialog import InterruptDialog
+
+class BestPracticesDialog(InterruptDialog):
     def __init__(self, dialog_id: str = None):
-        super(BestPractices, self).__init__(
-            dialog_id or BestPractices.__name__
+        super(BestPracticesDialog, self).__init__(
+            dialog_id or BestPracticesDialog.__name__
         )
         self.recognizer = ChallengeRecognizer()
         self.add_dialog(TextPrompt(TextPrompt.__name__))
         self.add_dialog(ConfirmPrompt(ConfirmPrompt.__name__))
-        self.add_dialog(DateResolverDialog(DateResolverDialog.__name__))
         self.add_dialog(
             WaterfallDialog(
                 WaterfallDialog.__name__,
@@ -34,7 +33,7 @@ class BestPractices(ComponentDialog):
         self.initial_dialog_id = WaterfallDialog.__name__
 
     async def first_step( self, step_context: WaterfallStepContext ) -> DialogTurnResult:
-        reply = MessageFactory.text("select the challenges macro area")
+        reply = MessageFactory.text("Le challenge si dividono in due macro-aree.\n\n- Development challenges: qui ci sono tutte le challenge che vengono affrontate durante lo sviluppo.\n\n- Use challenges: qui invece ci sono tutte le challenge per l'utilizzo dei bot.\n\n Seleziona una macro-area...")
 
         reply.suggested_actions = SuggestedActions(
             actions=[
@@ -56,11 +55,11 @@ class BestPractices(ComponentDialog):
         )
 
     async def second_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
-            reply = MessageFactory.text("select the challenge")
             intent = await self.recognizer.recognize(step_context)
-            print(intent)
 
             if(intent == "DevelopmentChallenges"):
+                reply = MessageFactory.text("Ecco qui tutte le challende relative allo sviluppo dei bot:")
+
                 reply.suggested_actions = SuggestedActions(
                     actions=[
                         CardAction(
@@ -111,6 +110,8 @@ class BestPractices(ComponentDialog):
                     ]
                 )
             elif (intent == "UseChallenges"):
+                reply = MessageFactory.text("Ecco qui tutte le challende relative all'utilizzo dei bot:")
+
                 reply.suggested_actions = SuggestedActions(
                     actions=[
                         CardAction(
@@ -181,22 +182,20 @@ class BestPractices(ComponentDialog):
                   ]
                 )
             else:
-                print("sono nell'else")
                 return await step_context.prompt(
-                     BestPractices.__name__,PromptOptions(prompt="", retry_prompt=""),
+                     BestPracticesDialog.__name__,PromptOptions(prompt="", retry_prompt=""),
                 )
             return await step_context.prompt(
                 TextPrompt.__name__, PromptOptions(prompt=reply)
             )
 
     async def third_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
-            print(step_context.result)
             res = await self.recognizer.recognize(step_context)
             if(res == None):
                 return await step_context.reprompt_dialog(
-                    BestPractices.__name__, PromptOptions(prompt="", retry_prompt=""),
+                    BestPracticesDialog.__name__, PromptOptions(prompt="", retry_prompt=""),
                 )
-            reply = MessageFactory.text("select the challenge"+res)
+            reply = MessageFactory.text(res)
 
             reply.suggested_actions = SuggestedActions(
                 actions=[
@@ -218,7 +217,7 @@ class BestPractices(ComponentDialog):
 
     async def fourth_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
         if(step_context.result == "ok, grazie per la risposta"):
-            print("sono qui")
             return await step_context.end_dialog()
+
         if(step_context.result == "Ho bisogno di altre best-practices per una nuova challenge"):
-            return await step_context.begin_dialog(BestPractices.__name__)
+            return await step_context.begin_dialog(BestPracticesDialog.__name__)

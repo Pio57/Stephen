@@ -1,5 +1,7 @@
 # Ola
 
+ ![alt text](https://i.pinimg.com/originals/36/b2/7c/36b27cb0ad7592535d6a939368e4a3ea.gif) 
+
 Ola è un chatbot che si occupa di assistere i programmatori durante lo 
 sviluppo di un bot, cercando di rispondere a quante più domande possibili.
 

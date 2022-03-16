@@ -26,7 +26,7 @@ class InterruptDialog(ComponentDialog):
         if inner_dc.context.activity.type == ActivityTypes.message:
             text = inner_dc.context.activity.text.lower()
 
-            help_message_text = "Digita 'annulla' per interrompere l'interazione"
+            help_message_text = "Digita 'cancel' per interrompere l'interazione"
             help_message = MessageFactory.text(
                 help_message_text, help_message_text, InputHints.expecting_input
             )

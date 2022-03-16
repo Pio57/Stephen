@@ -5,8 +5,6 @@ from typing import Dict
 from botbuilder.ai.luis import LuisRecognizer
 from botbuilder.core import IntentScore, TopIntent, TurnContext
 
-from booking_details import BookingDetails
-
 
 class Intent(Enum):
     BOOK_FLIGHT = "BookFlight"
@@ -52,7 +50,7 @@ class LuisHelper:
             )
 
             if intent == Intent.BOOK_FLIGHT.value:
-                result = BookingDetails()
+                #result = BookingDetails()
 
                 # We need to get the result from the LUIS JSON which at every level returns an array.
                 to_entities = recognizer_result.entities.get("$instance", {}).get(

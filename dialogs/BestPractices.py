@@ -1,3 +1,5 @@
+import os
+import json
 
 from chellenge_recognizer import ChallengeRecognizer
 
@@ -5,8 +7,8 @@ from datatypes_date_time.timex import Timex
 
 from botbuilder.dialogs import WaterfallDialog, WaterfallStepContext, DialogTurnResult, ComponentDialog
 from botbuilder.dialogs.prompts import ConfirmPrompt, TextPrompt, PromptOptions
-from botbuilder.core import MessageFactory
-from botbuilder.schema import InputHints, SuggestedActions, CardAction, ActionTypes
+from botbuilder.core import MessageFactory, CardFactory
+from botbuilder.schema import InputHints, SuggestedActions, CardAction, ActionTypes, Attachment, HeroCard
 
 from .InterruptDialog import InterruptDialog
 
@@ -33,33 +35,30 @@ class BestPracticesDialog(InterruptDialog):
         self.initial_dialog_id = WaterfallDialog.__name__
 
     async def first_step( self, step_context: WaterfallStepContext ) -> DialogTurnResult:
-        reply = MessageFactory.text("Le challenge si dividono in due macro-aree.\n\n- Development challenges: qui ci sono tutte le challenge che vengono affrontate durante lo sviluppo.\n\n- Use challenges: qui invece ci sono tutte le challenge per l'utilizzo dei bot.\n\n Seleziona una macro-area...")
+        reply = MessageFactory.text("Le challenge si dividono in due macro-aree.\n\n- Development challenges: qui ci sono tutte le challenge che vengono affrontate durante lo sviluppo.\n\n- Use challenges: qui invece ci sono tutte le challenge per l'utilizzo dei bot.\n\n ")
+        aree = ["Development challenges","Use challenges"]
 
-        reply.suggested_actions = SuggestedActions(
-            actions=[
-                CardAction(
-                    title="Development challenges",
-                    type=ActionTypes.im_back,
-                    value="Development challenges",
-                ),
-                CardAction(
-                    title="Use challenges",
-                    type=ActionTypes.im_back,
-                    value="Use challenges",
-                ),
-            ]
-        )
+        reply.attachments = [self.create_hero_card("Seleziona una macro-area...",aree)]
 
         return await step_context.prompt(
             TextPrompt.__name__, PromptOptions(prompt=reply)
         )
 
+    def create_hero_card(self, title, items) -> Attachment:
+        button = []
+        for i in items:
+            button.append(CardAction(type=ActionTypes.im_back,title=i,value=i))
+        herocard = HeroCard(title=title,buttons=button)
+        return CardFactory.hero_card(herocard)
+
     async def second_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
             intent = await self.recognizer.recognize(step_context)
 
             if(intent == "DevelopmentChallenges"):
-                reply = MessageFactory.text("Ecco qui tutte le challende relative allo sviluppo dei bot:")
-
+                reply = MessageFactory.text("")
+                developmentChallenges = ["High Dependence on Data/high data quality","NLP(Natural Language Processing)","Test of Bot/ChatBot","Maintenance","Development cost","Secure data","Machine learning","Respond slowly","Integration"]
+                reply.attachments = [self.create_hero_card("Ecco qui tutte le challende relative allo sviluppo dei bot:",developmentChallenges)]
+                """
                 reply.suggested_actions = SuggestedActions(
                     actions=[
                         CardAction(
@@ -109,9 +108,12 @@ class BestPracticesDialog(InterruptDialog):
                         ),
                     ]
                 )
+                """
             elif (intent == "UseChallenges"):
                 reply = MessageFactory.text("Ecco qui tutte le challende relative all'utilizzo dei bot:")
-
+                useChallenges = ["Privacy concerns","Accessibility","Noise","Ethics","Trust/reliability","Interruption","Choosing a bot / Configuring a bot","Lack of understanding of intent","Too long answers","Solve everything","Lack of information about the bot","Wrong actions/wrong information","Usability"]
+                reply.attachments = [self.create_hero_card("Ecco qui tutte le challende relative all'utilizzo dei bot:",useChallenges)]
+                """
                 reply.suggested_actions = SuggestedActions(
                     actions=[
                         CardAction(
@@ -181,6 +183,7 @@ class BestPracticesDialog(InterruptDialog):
                         ),
                   ]
                 )
+                """
             else:
                 return await step_context.prompt(
                      BestPracticesDialog.__name__,PromptOptions(prompt="", retry_prompt=""),

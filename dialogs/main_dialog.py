@@ -11,7 +11,6 @@ from botbuilder.dialogs.prompts import TextPrompt, PromptOptions
 from botbuilder.core import MessageFactory, TurnContext, turn_context
 from botbuilder.schema import InputHints, SuggestedActions, CardAction, ActionTypes, CardImage
 
-from booking_details import BookingDetails
 from chellenge_recognizer import ChallengeRecognizer
 from flight_booking_recognizer import FlightBookingRecognizer
 from helpers.luis_helper import LuisHelper, Intent

@@ -25,6 +25,9 @@ class DialogBot(ActivityHandler):
         self.user_state = user_state
         self.dialog = dialog
 
+        self.conversation_data_accessor = self.conversation_state.create_property("ConversationData")
+        self.user_profile_accessor = self.user_state.create_property("UserProfile")
+
     async def on_turn(self, turn_context: TurnContext):
         await super().on_turn(turn_context)
 

@@ -31,7 +31,7 @@ class DialogAndWelcomeBot(DialogBot):
             # Greet anyone that was not the target (recipient) of this message.
             # To learn more about Adaptive Cards, see https://aka.ms/msbot-adaptivecards for more details.
             if member.id != turn_context.activity.recipient.id:
-                welcome_card = self.create_adaptive_card_attachment()
+                welcome_card = self.welcome_message()
                 response = MessageFactory.attachment(welcome_card)
                 await turn_context.send_activity(response)
                 await DialogHelper.run_dialog(
@@ -41,7 +41,7 @@ class DialogAndWelcomeBot(DialogBot):
                 )
 
     # Load attachment from file.
-    def create_adaptive_card_attachment(self):
+    def welcome_message(self):
         relative_path = os.path.abspath(os.path.dirname(__file__))
         path = os.path.join(relative_path, "../cards/welcomeCard.json")
         with open(path) as in_file:

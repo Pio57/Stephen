@@ -37,6 +37,14 @@ class BestPracticesDialog(InterruptDialog):
                   "BP_WA_WI": "Di solito i bot durante il loro utilizzo apprendono nuove informazioni, questi informazioni possono essere sibuone ma anche cattive.Per evitare che il bot apprenda nozioni cattive dobbiamo : \n\n- Riconoscere il problema.\n\n- Impiegare misure difensive e protettive (Come rigidi controlli di accesso, adottare soluzione di protezione della rete).\n\n- Monitorare e testare la sicurezza.",
                   "BP_U": "Per l'usabilità deobbiamo rendere le conversazioni con il bot quanto più simili a quelle umane.Quindi le conversazioni dovrebbero essere naturali, creative ed emotive.",
                   }
+    developmentChallenges = ["High Dependence on Data/high data quality", "NLP(Natural Language Processing)",
+                             "Test of Bot/ChatBot", "Maintenance", "Development cost", "Secure data",
+                             "Machine learning", "Respond slowly", "Integration"]
+
+    useChallenges = ["Privacy concerns", "Accessibility", "Noise", "Ethics", "Trust/reliability", "Interruption",
+                     "Choosing a bot / Configuring a bot", "Lack of understanding of intent", "Too long answers",
+                     "Solve everything", "Lack of information about the bot", "Wrong actions/wrong information",
+                     "Usability"]
 
     def __init__(self, dialog_id: str = None):
         super(BestPracticesDialog, self).__init__(
@@ -81,8 +89,7 @@ class BestPracticesDialog(InterruptDialog):
 
             if(intent == "DevelopmentChallenges"):
                 reply = MessageFactory.text("")
-                developmentChallenges = ["High Dependence on Data/high data quality","NLP(Natural Language Processing)","Test of Bot/ChatBot","Maintenance","Development cost","Secure data","Machine learning","Respond slowly","Integration"]
-                reply.attachments = [self.create_hero_card("Ecco qui tutte le challende relative allo sviluppo dei bot:",developmentChallenges)]
+                reply.attachments = [self.create_hero_card("Ecco qui tutte le challende relative allo sviluppo dei bot:",self.developmentChallenges)]
                 """
                 reply.suggested_actions = SuggestedActions(
                     actions=[
@@ -136,8 +143,7 @@ class BestPracticesDialog(InterruptDialog):
                 """
             elif (intent == "UseChallenges"):
                 reply = MessageFactory.text("Ecco qui tutte le challende relative all'utilizzo dei bot:")
-                useChallenges = ["Privacy concerns","Accessibility","Noise","Ethics","Trust/reliability","Interruption","Choosing a bot / Configuring a bot","Lack of understanding of intent","Too long answers","Solve everything","Lack of information about the bot","Wrong actions/wrong information","Usability"]
-                reply.attachments = [self.create_hero_card("Ecco qui tutte le challende relative all'utilizzo dei bot:",useChallenges)]
+                reply.attachments = [self.create_hero_card("Ecco qui tutte le challende relative all'utilizzo dei bot:",self.useChallenges)]
                 """
                 reply.suggested_actions = SuggestedActions(
                     actions=[
@@ -238,6 +244,11 @@ class BestPracticesDialog(InterruptDialog):
                         type=ActionTypes.im_back,
                         value="Ho bisogno di altre best-practices per una nuova challenge",
                     ),
+                    CardAction(
+                        title="Torna al menù principale",
+                        type=ActionTypes.im_back,
+                        value="Torna al menù principale",
+                    ),
                 ]
             )
             return await step_context.prompt(
@@ -248,5 +259,8 @@ class BestPracticesDialog(InterruptDialog):
         if(step_context.result == "ok, grazie per la risposta"):
             return await step_context.end_dialog()
 
-        if(step_context.result == "Ho bisogno di altre best-practices per una nuova challenge"):
+        elif(step_context.result == "Ho bisogno di altre best-practices per una nuova challenge"):
             return await step_context.begin_dialog(BestPracticesDialog.__name__)
+
+        elif(step_context.result == "Torna al menù principale"):
+            return await step_context.begin_dialog("MainDialog")

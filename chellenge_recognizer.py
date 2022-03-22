@@ -5,7 +5,7 @@ from botbuilder.dialogs import WaterfallStepContext
 class ChallengeRecognizer(Recognizer):
     intents = {"Acknowledges challenge" : "AcknowledgesChallenge",
                   "Insert new challenge" : "InsertChallenge",
-                  "Remove challenge" : "RemoveChallenge" ,
+                  "Edit challenge" : "EditChallenge" ,
                   "Development challenges" : "DevelopmentChallenges",
                   "Use challenges" : "UseChallenges",
                   "High Dependence on Data/high data quality": "BP_HDD_HDQ",

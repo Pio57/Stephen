@@ -107,4 +107,8 @@ class InsertChallenge(InterruptDialog):
         elif (type_challenge == "UseChallenges"):
             BestPracticesDialog.useChallenges.append(name_challenge)
         ChallengeRecognizer.intents.__setitem__(name_challenge,name_challenge)
+        reply = MessageFactory.text("Ho appena inserito la nuova challenge, grazie mille!\n\nHai bisogno di altro?")
+        await step_context.prompt(
+            TextPrompt.__name__, PromptOptions(prompt=reply)
+        )
         return await step_context.begin_dialog("MainDialog")

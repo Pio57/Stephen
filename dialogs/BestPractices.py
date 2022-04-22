@@ -12,31 +12,32 @@ from botbuilder.schema import InputHints, SuggestedActions, CardAction, ActionTy
 
 from .InterruptDialog import InterruptDialog
 
+
 class BestPracticesDialog(InterruptDialog):
     challenges = {
-                  "BP_HDD_HDQ": "Per il nostro agente i dati sono essenziali, quindi dobbiamo sicuramente avere una grande quantità di dati e sopratutto dati di qualità.Quindi oltre ad avere un grande dataset, dobbiamo applicare tutte quelle tecniche di data preparation per pulire al meglio il dataset",
-                  "BP_NLP": "Per l'NLP dobbiamo tenere in considerazione l'intento ovvero le intenzioni dell'utente finale, le entità che sono i metadati dell'intento.\nSe può esserti utile puoi usare Language Understanding (LUIS),è un servizio di intelligenza artificiale conversazionale basato sul cloud che applica l'intelligenza di Machine Learning al testo in linguaggio naturale della conversazione di un utente per prevedere il significato generale ed estrarre informazioni pertinenti e dettagliate. ",
-                  "BP_TEST":"Test",
-                  "BP_M": "Per la manutenzione ci sono 3 fasi principali:\n\n- HyperCare, dove i bot vengono eseguiti sotto stretta sorveglianza.\n\n- Supporto\n\n- Miglioramenti minori",
-                  "BP_DC": "La necessità di formazione continua può diventare costosa, con l'utilizzo di piattaforme di modellazione SaaS AI/ML questapuò essere in qualche modo evitata utilizzando soluzioni invece di assumere un team completo di data science per modellare e allenare un bot.\nInoltre possiamo optare per tool e framework open source per diminuire ancora di più questo costo di sviluppo.",
-                  "BC_SC": "Per la sicurezza del bot:\n\n- Il bot deve scambiare dati utilizzando un protocollo HTTPS\n\n- Eliminare i messaggi contenenti i dati sensibili non appena non sono più necessari\n\n- La best practice prevede di archiviare le informazioni in uno stato sicuro per un certo periodo di tempo e poi di scartarle in un secondo momento dopo che hanno raggiunto il loro scopo\n\n-  Rafforzare il DB",
-                  "BC_ML": "Usare algoritmi di machine learning per capire continuamente i diversi modi in cui i clienti pongono le domande",
-                  "BC_RS": "Per l'usabilità deobbiamo rendere le conversazioni con il bot quanto più simili a quelle umane. Quindi le conversazioni dovrebbero essere naturali, creative ed emotive.",
-                  "BP_I": "Per l'integrazione è consigliato utilizzare le API",
-                  "BP_PC": "Per quanto riguarda i concetti di privacy ossiamo agire in più modi :\n\n- Autenticazione e autorizzazione : questo sicuramente quando si sta lavorando con i dati del cliente.\n\n- Crittografia end-to-end: che è molto comoda in quanto permette la comunicazione in cui solo le due parti possono leggere i messaggi.\n\n- Messaggi autodistruttivi: Utilizzati per andare ad eliminare tutti quei messaggi che contengono informazioni personali.",
-                  "BP_A": "Per questa challenge dobbiamo prevedere che il bot offri sia un interfaccia visiva che audio, questo proprio per permettere l'utilizzo del bot a tutti i potenziali utenti, senza distinzione di capacità e competenze linguistiche",
-                  "BP_N": "Una soluzione è costruire strategicamente, cioèidentifichiamo un obbiettivo specifico di ciascun bot, in modo da evitare che un bot faccia tantissime cose, e strutturare le iterazioniattorno all'azione che desideri che l'utente intraprenda.",
-                  "BP_E": "Per affrontare l'etica ci viene consigliato:\n\n- Di essere TRASPARENTI con chi utilizza il bot(fargli capire che non sta interagendo con una vera persona)\n\n- Evitare di di rafforzare i ruoli di genere(evitare lo stereotipo della 'donna sottomessa')\n\n- Arte della comunicazione",
-                  "BP_T_R": "\n\n- Imposta aspettative chiare su cosa può fare chi utilizza il bot\n\n- Rendi l'esperienza fluida\n\n- Rendere coerente ogni iterazione\n\n- Rassicurare gli utenti in merito alle proprie misure di sicurezza",
-                  "BP_IN": "IN",
-                  "BP_CC": "\n\n- Impostare un obiettivo per il chatbot\n\n- Dare una personalità al chatbot, anche in base ai clienti con cui si relaziona",
-                  "BP_LUI": "Per comprendere gli intenti ci sono vari modi:\n\n- Usare alberi decisionali più forti\n\n- Applichiamo tecniche di Machine learning per la miglior comprensione dell'intendo dell'utente\n\n- NLP",
-                  "BP_TLA": "Di solito un bot offre agli utenti contenuti informativi e interessanti, per divulgare ciò sicuramente le informazioni saranno tante e conviene inviare più messaggi brevi anzichè uno lungo.",
-                  "BP_SE": "Si consiglia che se il bot non riesce ad esaudire una richiesta dell'utente, in quanto non è una richiesta comune, allora si drovrà passare il rapidamente il controllo ad un operatore umanoin modo da evitarre che l'esperienza del cliente ne risente.",
-                  "BP_LIB": "E' importante che nel messaggio di presentazione il botelenchi in anticipo le sue funzioni, in modo che l'utente sappia interagire con esso.",
-                  "BP_WA_WI": "Di solito i bot durante il loro utilizzo apprendono nuove informazioni, questi informazioni possono essere sibuone ma anche cattive.Per evitare che il bot apprenda nozioni cattive dobbiamo : \n\n- Riconoscere il problema.\n\n- Impiegare misure difensive e protettive (Come rigidi controlli di accesso, adottare soluzione di protezione della rete).\n\n- Monitorare e testare la sicurezza.",
-                  "BP_U": "Per l'usabilità deobbiamo rendere le conversazioni con il bot quanto più simili a quelle umane.Quindi le conversazioni dovrebbero essere naturali, creative ed emotive.",
-                  }
+        "BP_HDD_HDQ": "Per il nostro agente i dati sono essenziali, quindi dobbiamo sicuramente avere una grande quantità di dati e sopratutto dati di qualità.Quindi oltre ad avere un grande dataset, dobbiamo applicare tutte quelle tecniche di data preparation per pulire al meglio il dataset",
+        "BP_NLP": "Per l'NLP dobbiamo tenere in considerazione l'intento ovvero le intenzioni dell'utente finale, le entità che sono i metadati dell'intento.\nSe può esserti utile puoi usare Language Understanding (LUIS),è un servizio di intelligenza artificiale conversazionale basato sul cloud che applica l'intelligenza di Machine Learning al testo in linguaggio naturale della conversazione di un utente per prevedere il significato generale ed estrarre informazioni pertinenti e dettagliate. ",
+        "BP_TEST": "Test",
+        "BP_M": "Per la manutenzione ci sono 3 fasi principali:\n\n- HyperCare, dove i bot vengono eseguiti sotto stretta sorveglianza.\n\n- Supporto\n\n- Miglioramenti minori",
+        "BP_DC": "La necessità di formazione continua può diventare costosa, con l'utilizzo di piattaforme di modellazione SaaS AI/ML questapuò essere in qualche modo evitata utilizzando soluzioni invece di assumere un team completo di data science per modellare e allenare un bot.\nInoltre possiamo optare per tool e framework open source per diminuire ancora di più questo costo di sviluppo.",
+        "BC_SC": "Per la sicurezza del bot:\n\n- Il bot deve scambiare dati utilizzando un protocollo HTTPS\n\n- Eliminare i messaggi contenenti i dati sensibili non appena non sono più necessari\n\n- La best practice prevede di archiviare le informazioni in uno stato sicuro per un certo periodo di tempo e poi di scartarle in un secondo momento dopo che hanno raggiunto il loro scopo\n\n-  Rafforzare il DB",
+        "BC_ML": "Usare algoritmi di machine learning per capire continuamente i diversi modi in cui i clienti pongono le domande",
+        "BC_RS": "Per l'usabilità deobbiamo rendere le conversazioni con il bot quanto più simili a quelle umane. Quindi le conversazioni dovrebbero essere naturali, creative ed emotive.",
+        "BP_I": "Per l'integrazione è consigliato utilizzare le API",
+        "BP_PC": "Per quanto riguarda i concetti di privacy ossiamo agire in più modi :\n\n- Autenticazione e autorizzazione : questo sicuramente quando si sta lavorando con i dati del cliente.\n\n- Crittografia end-to-end: che è molto comoda in quanto permette la comunicazione in cui solo le due parti possono leggere i messaggi.\n\n- Messaggi autodistruttivi: Utilizzati per andare ad eliminare tutti quei messaggi che contengono informazioni personali.",
+        "BP_A": "Per questa challenge dobbiamo prevedere che il bot offri sia un interfaccia visiva che audio, questo proprio per permettere l'utilizzo del bot a tutti i potenziali utenti, senza distinzione di capacità e competenze linguistiche",
+        "BP_N": "Una soluzione è costruire strategicamente, cioèidentifichiamo un obbiettivo specifico di ciascun bot, in modo da evitare che un bot faccia tantissime cose, e strutturare le iterazioniattorno all'azione che desideri che l'utente intraprenda.",
+        "BP_E": "Per affrontare l'etica ci viene consigliato:\n\n- Di essere TRASPARENTI con chi utilizza il bot(fargli capire che non sta interagendo con una vera persona)\n\n- Evitare di di rafforzare i ruoli di genere(evitare lo stereotipo della 'donna sottomessa')\n\n- Arte della comunicazione",
+        "BP_T_R": "\n\n- Imposta aspettative chiare su cosa può fare chi utilizza il bot\n\n- Rendi l'esperienza fluida\n\n- Rendere coerente ogni iterazione\n\n- Rassicurare gli utenti in merito alle proprie misure di sicurezza",
+        "BP_IN": "IN",
+        "BP_CC": "\n\n- Impostare un obiettivo per il chatbot\n\n- Dare una personalità al chatbot, anche in base ai clienti con cui si relaziona",
+        "BP_LUI": "Per comprendere gli intenti ci sono vari modi:\n\n- Usare alberi decisionali più forti\n\n- Applichiamo tecniche di Machine learning per la miglior comprensione dell'intendo dell'utente\n\n- NLP",
+        "BP_TLA": "Di solito un bot offre agli utenti contenuti informativi e interessanti, per divulgare ciò sicuramente le informazioni saranno tante e conviene inviare più messaggi brevi anzichè uno lungo.",
+        "BP_SE": "Si consiglia che se il bot non riesce ad esaudire una richiesta dell'utente, in quanto non è una richiesta comune, allora si drovrà passare il rapidamente il controllo ad un operatore umanoin modo da evitarre che l'esperienza del cliente ne risente.",
+        "BP_LIB": "E' importante che nel messaggio di presentazione il botelenchi in anticipo le sue funzioni, in modo che l'utente sappia interagire con esso.",
+        "BP_WA_WI": "Di solito i bot durante il loro utilizzo apprendono nuove informazioni, questi informazioni possono essere sibuone ma anche cattive.Per evitare che il bot apprenda nozioni cattive dobbiamo : \n\n- Riconoscere il problema.\n\n- Impiegare misure difensive e protettive (Come rigidi controlli di accesso, adottare soluzione di protezione della rete).\n\n- Monitorare e testare la sicurezza.",
+        "BP_U": "Per l'usabilità deobbiamo rendere le conversazioni con il bot quanto più simili a quelle umane.Quindi le conversazioni dovrebbero essere naturali, creative ed emotive.",
+    }
     developmentChallenges = ["High Dependence on Data/high data quality", "NLP(Natural Language Processing)",
                              "Test of Bot/ChatBot", "Maintenance", "Development cost", "Secure data",
                              "Machine learning", "Respond slowly", "Integration"]
@@ -67,11 +68,12 @@ class BestPracticesDialog(InterruptDialog):
 
         self.initial_dialog_id = WaterfallDialog.__name__
 
-    async def first_step( self, step_context: WaterfallStepContext ) -> DialogTurnResult:
-        reply = MessageFactory.text("Le challenge si dividono in due macro-aree.\n\n- Development challenges: qui ci sono tutte le challenge che vengono affrontate durante lo sviluppo.\n\n- Use challenges: qui invece ci sono tutte le challenge per l'utilizzo dei bot.\n\n ")
-        aree = ["Development challenges","Use challenges"]
+    async def first_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
+        reply = MessageFactory.text(
+            "Le challenge si dividono in due macro-aree.\n\n- Development challenges: qui ci sono tutte le challenge che vengono affrontate durante lo sviluppo.\n\n- Use challenges: qui invece ci sono tutte le challenge per l'utilizzo dei bot.\n\n ")
+        aree = ["Development challenges", "Use challenges"]
 
-        reply.attachments = [self.create_hero_card("Seleziona una macro-area...",aree)]
+        reply.attachments = [self.create_hero_card("Seleziona una macro-area...", aree)]
 
         return await step_context.prompt(
             TextPrompt.__name__, PromptOptions(prompt=reply)
@@ -80,187 +82,69 @@ class BestPracticesDialog(InterruptDialog):
     def create_hero_card(self, title, items) -> Attachment:
         button = []
         for i in items:
-            button.append(CardAction(type=ActionTypes.im_back,title=i,value=i))
-        herocard = HeroCard(title=title,buttons=button)
+            button.append(CardAction(type=ActionTypes.im_back, title=i, value=i))
+        herocard = HeroCard(title=title, buttons=button)
         return CardFactory.hero_card(herocard)
 
     async def second_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
-            intent = await self.recognizer.recognize(step_context)
+        intent = await self.recognizer.recognize(step_context)
 
-            if(intent == "DevelopmentChallenges"):
-                reply = MessageFactory.text("")
-                reply.attachments = [self.create_hero_card("Ecco qui tutte le challende relative allo sviluppo dei bot:",self.developmentChallenges)]
-                """
-                reply.suggested_actions = SuggestedActions(
-                    actions=[
-                        CardAction(
-                            title="High Dependence on Data/high data quality",
-                            type=ActionTypes.im_back,
-                            value="High Dependence on Data/high data quality",
-                        ),
-                        CardAction(
-                            title="NLP(Natural Language Processing)",
-                            type=ActionTypes.im_back,
-                            value="NLP(Natural Language Processing)",
-                        ),
-                        CardAction(
-                            title="Test of Bot/ChatBot",
-                            type=ActionTypes.im_back,
-                            value="Test of Bot/ChatBot",
-                        ),
-                        CardAction(
-                            title="Maintenance",
-                            type=ActionTypes.im_back,
-                            value="Maintenance",
-                        ),
-                        CardAction(
-                            title="Development cost",
-                            type=ActionTypes.im_back,
-                            value="Development cost",
-                        ),
-                        CardAction(
-                            title="Secure data",
-                            type=ActionTypes.im_back,
-                            value="Secure data",
-                        ),
-                        CardAction(
-                            title="Machine learning",
-                            type=ActionTypes.im_back,
-                            value="Machine learning",
-                        ),
-                        CardAction(
-                            title="Respond slowly",
-                            type=ActionTypes.im_back,
-                            value="Respond slowly",
-                        ),
-                        CardAction(
-                            title="Integration",
-                            type=ActionTypes.im_back,
-                            value="Integration",
-                        ),
-                    ]
-                )
-                """
-            elif (intent == "UseChallenges"):
-                reply = MessageFactory.text("Ecco qui tutte le challende relative all'utilizzo dei bot:")
-                reply.attachments = [self.create_hero_card("Ecco qui tutte le challende relative all'utilizzo dei bot:",self.useChallenges)]
-                """
-                reply.suggested_actions = SuggestedActions(
-                    actions=[
-                        CardAction(
-                            title="Privacy concerns",
-                            type=ActionTypes.im_back,
-                            value="Privacy concerns",
-                        ),
-                        CardAction(
-                            title="Accessibility",
-                            type=ActionTypes.im_back,
-                            value="Accessibility",
-                        ),
-                        CardAction(
-                            title="Noise",
-                            type=ActionTypes.im_back,
-                            value="Noise",
-                        ),
-                        CardAction(
-                            title="Ethics",
-                            type=ActionTypes.im_back,
-                            value="Ethics",
-                        ),
-                        CardAction(
-                            title="Trust/reliability",
-                            type=ActionTypes.im_back,
-                            value="Trust/reliability",
-                        ),
-                        CardAction(
-                            title="Interruption",
-                            type=ActionTypes.im_back,
-                            value="Interruption",
-                        ),
-                        CardAction(
-                            title="Choosing a bot / Configuring a bot",
-                            type=ActionTypes.im_back,
-                            value="Choosing a bot / Configuring a bot",
-                        ),
-                        CardAction(
-                            title="Lack of understanding of intent",
-                            type=ActionTypes.im_back,
-                            value="Lack of understanding of intent",
-                        ),
-                        CardAction(
-                            title="Too long answers",
-                            type=ActionTypes.im_back,
-                            value="Too long answers",
-                        ),
-                        CardAction(
-                            title="Solve everything",
-                            type=ActionTypes.im_back,
-                            value="Solve everything",
-                        ),
-                        CardAction(
-                            title="Lack of information about the bot",
-                            type=ActionTypes.im_back,
-                            value="Lack of information about the bot",
-                        ),
-                        CardAction(
-                            title="Wrong actions/wrong information",
-                            type=ActionTypes.im_back,
-                            value="Wrong actions/wrong information",
-                        ),
-                        CardAction(
-                            title="Usability",
-                            type=ActionTypes.im_back,
-                            value="Usability",
-                        ),
-                  ]
-                )
-                """
-            else:
-                return await step_context.prompt(
-                     BestPracticesDialog.__name__,PromptOptions(prompt="", retry_prompt=""),
-                )
+        if (intent == "DevelopmentChallenges"):
+            reply = MessageFactory.text("")
+            reply.attachments = [self.create_hero_card("Ecco qui tutte le challende relative allo sviluppo dei bot:",
+                                                       self.developmentChallenges)]
+
+        elif (intent == "UseChallenges"):
+            reply = MessageFactory.text("Ecco qui tutte le challende relative all'utilizzo dei bot:")
+            reply.attachments = [
+                self.create_hero_card("Ecco qui tutte le challende relative all'utilizzo dei bot:", self.useChallenges)]
+
+        else:
             return await step_context.prompt(
-                TextPrompt.__name__, PromptOptions(prompt=reply)
+                BestPracticesDialog.__name__, PromptOptions(prompt="", retry_prompt=""),
             )
+        return await step_context.prompt(
+            TextPrompt.__name__, PromptOptions(prompt=reply)
+        )
 
     async def third_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
-            res = await self.recognizer.recognize(step_context)
-            if(res == None):
-                return await step_context.reprompt_dialog(
-                    BestPracticesDialog.__name__, PromptOptions(prompt="", retry_prompt=""),
-                )
-            bp = self.challenges[res]
-            reply = MessageFactory.text(bp)
+        res = await self.recognizer.recognize(step_context)
+        if (res == None):
+            return await step_context.reprompt_dialog(
+                BestPracticesDialog.__name__, PromptOptions(prompt="", retry_prompt=""),
+            )
+        bp = self.challenges[res]
+        reply = MessageFactory.text(bp)
 
-            reply.suggested_actions = SuggestedActions(
-                actions=[
-                    CardAction(
-                        title="ok, grazie per la risposta",
-                        type=ActionTypes.im_back,
-                        value="ok, grazie per la risposta",
-                    ),
-                    CardAction(
-                        title="Ho bisogno di altre best-practices per una nuova challenge",
-                        type=ActionTypes.im_back,
-                        value="Ho bisogno di altre best-practices per una nuova challenge",
-                    ),
-                    CardAction(
-                        title="Torna al menù principale",
-                        type=ActionTypes.im_back,
-                        value="Torna al menù principale",
-                    ),
-                ]
-            )
-            return await step_context.prompt(
-                TextPrompt.__name__, PromptOptions(prompt=reply)
-            )
+        reply.suggested_actions = SuggestedActions(
+            actions=[
+                CardAction(
+                    title="ok, grazie per la risposta",
+                    type=ActionTypes.im_back,
+                    value="ok, grazie per la risposta",
+                ),
+                CardAction(
+                    title="Ho bisogno di altre best-practices per una nuova challenge",
+                    type=ActionTypes.im_back,
+                    value="Ho bisogno di altre best-practices per una nuova challenge",
+                ),
+                CardAction(
+                    title="Torna al menù principale",
+                    type=ActionTypes.im_back,
+                    value="Torna al menù principale",
+                ),
+            ]
+        )
+        return await step_context.prompt(
+            TextPrompt.__name__, PromptOptions(prompt=reply)
+        )
 
     async def fourth_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
-        if(step_context.result == "ok, grazie per la risposta"):
+        if (step_context.result == "ok, grazie per la risposta"):
             return await step_context.end_dialog()
 
-        elif(step_context.result == "Ho bisogno di altre best-practices per una nuova challenge"):
+        elif (step_context.result == "Ho bisogno di altre best-practices per una nuova challenge"):
             return await step_context.begin_dialog(BestPracticesDialog.__name__)
 
-        elif(step_context.result == "Torna al menù principale"):
+        elif (step_context.result == "Torna al menù principale"):
             return await step_context.begin_dialog("MainDialog")

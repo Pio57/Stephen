@@ -21,7 +21,7 @@
       "type": "TextBlock",
       "size": "default",
       "isSubtle": "true",
-      "text": "Sono un bot che ti aiuterà nello sviluppo e utlizzo di chatbot per lo sviluppo software, precisamente ti consiglierò delle best-practices in base alle challenges che dovrai affrontare.",
+      "text": "Sono un bot che ti aiuterà nello sviluppo e utlizzo di chatbot per lo sviluppo software, precisamente ti consiglierò delle best-practices in base alle challenges che dovrai affrontare.\n\n Dimmi come posso aiutarti...\n\n Digita 'menu' se vuoi che ti illustro le mie funzionalità.",
       "wrap": true,
       "maxLines": 0
     }

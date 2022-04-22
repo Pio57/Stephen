@@ -104,5 +104,8 @@ class EditChallenge(InterruptDialog):
         best_practices = step_context.result
         name_challenge = step_context.dialogs.__getattribute__("editChallenge")
         BestPracticesDialog.challenges.__setitem__(name_challenge,BestPracticesDialog.challenges.get(name_challenge)+"\n\n"+best_practices)
-        print(BestPracticesDialog.challenges.get(name_challenge))
+        reply = MessageFactory.text("Ho appena apportato la tua modifica, grazie mille!\n\nHai bisogno di altro?")
+        await step_context.prompt(
+            TextPrompt.__name__, PromptOptions(prompt=reply)
+        )
         return await step_context.begin_dialog("MainDialog")

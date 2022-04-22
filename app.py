@@ -27,7 +27,6 @@ from dialogs import MainDialog
 from bots import DialogAndWelcomeBot
 
 from adapter_with_error_handler import AdapterWithErrorHandler
-from flight_booking_recognizer import FlightBookingRecognizer
 
 CONFIG = DefaultConfig()
 

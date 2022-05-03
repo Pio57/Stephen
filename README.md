@@ -10,6 +10,28 @@ Questo bot è stato realizzato utilizzando [Bot Framework](https://dev.botframew
 - Più conversazioni utilizzando i Dialogs
 - Gestite le interruzioni dell'utente come "Help" o "Cancel".
 
+## Architettura del Bot 
+
+![](img/BotArchitecture.png)
+
+## Prerequisiti 
+
+### Python
+[Python](https://www.python.org/downloads/) versione 3.10.
+
+`#Verificare la versione di pyhon -> Python --version`
+
+## Per eseguire il Bot in locale
+
+- Clonare il repository
+```bash
+git clone https://github.com/Pio57/Ola.git
+```
+- Apri il terminale nella cartella della del progetto clonato
+- Nel terminale digirate `pip install -r requirements.txt`
+- Avviare il bot con `python app.py`
+
+
 
 ## Testare il Bot 
 

@@ -19,13 +19,16 @@ Questo bot è stato realizzato utilizzando [Bot Framework](https://dev.botframew
 ### Python
 [Python](https://www.python.org/downloads/) versione 3.10.
 
-`#Verificare la versione di pyhon -> Python --version`
+```bash
+#Verificare la versione di pyhon 
+Python --version
+```
 
 ## Per eseguire il Bot in locale
 
 - Clonare il repository
 ```bash
-git clone https://github.com/Pio57/Ola.git
+git https://github.com/Pio57/Stephen.git
 ```
 - Apri il terminale nella cartella della del progetto clonato
 - Nel terminale digirate `pip install -r requirements.txt`

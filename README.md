@@ -1,8 +1,8 @@
-# Ola
+# Stephen
 
  ![alt text](https://i.pinimg.com/originals/36/b2/7c/36b27cb0ad7592535d6a939368e4a3ea.gif) 
 
-Ola è un chatbot che si occupa di assistere i programmatori durante lo 
+Stephen è un chatbot che si occupa di assistere i programmatori durante lo 
 sviluppo di un bot, cercando di rispondere a quante più domande possibili.
 
 Questo bot è stato realizzato utilizzando [Bot Framework](https://dev.botframework.com), e sono state implementate:
@@ -42,3 +42,8 @@ Per testare il bot si è utilizzato [Bot Framework Emulator](https://github.com/
 - Avvia Bot Framework Emulator
 - File -> Open Bot
 - Inserisci l'URL of `http://localhost:3978/api/messages`
+
+## Documentazione
+
+Al seguente link è riportato tutta la documentazione prodotta durante la fase di
+analisi in letteratura : [Data extraction](https://docs.google.com/spreadsheets/d/17tolV3Zc31x7tGw9ly5XD17nF1s1NVqw/edit?usp=sharing&ouid=110944671384119523236&rtpof=true&sd=true)

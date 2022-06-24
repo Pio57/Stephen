@@ -72,7 +72,7 @@ class MainDialog(ComponentDialog):
     async def loop(self, step_context: WaterfallStepContext) -> DialogTurnResult:
         if(str(step_context.result).lower() == "menu" or str(step_context.result).lower() == "menù"):
             return await step_context.next(step_context)
-        if (str(step_context.result).lower() == "cancel" or str(step_context.result).lower() == "quit"):
+        if (str(step_context.result).lower() == "cancel" or str(step_context.result).lower() == "quit" or str(step_context.result).lower() == "grazie" or str(step_context.result).lower() == "grazie per la risposta"):
             reply = MessageFactory.text("Spero di essere stato d'aiuto, alla prossima!!")
             await step_context._turn_context.send_activity(reply)
             return await step_context.end_dialog()
@@ -96,7 +96,7 @@ class MainDialog(ComponentDialog):
                         text = random.choice(intent['responses'])
                         reply = MessageFactory.text(text)
             else:
-                reply = MessageFactory.text("I do not understand...")
+                reply = MessageFactory.text("Non ho capito...")
             await step_context._turn_context.send_activity(BestPracticesDialog.challenges[text])
             return await step_context.begin_dialog("MainDialog")
 
@@ -165,7 +165,7 @@ class MainDialog(ComponentDialog):
 
 
     async def final_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
-        reply = MessageFactory.text("Spero di essere stato d'aiuto, alla prossima!!")
+        reply = MessageFactory.text("Spero di essere stato d'aiuto, alla prossima!")
         await step_context._turn_context.send_activity(reply)
         return await step_context.end_dialog()
 

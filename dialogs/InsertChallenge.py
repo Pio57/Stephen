@@ -61,7 +61,7 @@ class InsertChallenge(InterruptDialog):
         self.initial_dialog_id = WaterfallDialog.__name__
 
     async def first_step( self, step_context: WaterfallStepContext ) -> DialogTurnResult:
-        reply = MessageFactory.text("Vuoi inserire una nuova challenge?, bene di che tipologia di challenge si tratta?")
+        reply = MessageFactory.text("Vuoi inserire una nuova challenge? Bene di che tipologia di challenge si tratta?")
         aree = ["Development challenges","Use challenges"]
 
         reply.attachments = [self.create_hero_card("Seleziona una macro-area...",aree)]

@@ -62,7 +62,7 @@ class EditChallenge(InterruptDialog):
 
     async def first_step( self, step_context: WaterfallStepContext ) -> DialogTurnResult:
 
-        reply = MessageFactory.text("Vuoi modificare le best-practices di una challenge?, bene di che tipologia fa parte la challenge?")
+        reply = MessageFactory.text("Vuoi modificare le best-practices di una challenge? Bene di che tipologia fa parte la challenge?")
         aree = ["Development challenges","Use challenges"]
 
         reply.attachments = [self.create_hero_card("Seleziona una macro-area...",aree)]
